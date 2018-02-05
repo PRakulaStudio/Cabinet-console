@@ -195,6 +195,7 @@
         return io('console/host/pluginRequest', {
             hostId: pms.selectedHost.id,
             requestPath: cabinet.apiPath +'console/order/get',
+	    mode:'post'
 
         }, data).then(function (response) {
             if (!response.status || !response.response) return false;
