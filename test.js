@@ -104,11 +104,10 @@
 
     // TODO: Обработчик клика по элементу в меню, вызывается только при клике по элементу с типом "group" и отдает массив вложенных элементов
     cabinet.menuItemsWorker = function (parameters = {}) {
-
+        console.log("ITEM WORKER");
        // return new Promise(function (resolve, reject) {
             //createNotification(pms.config.name, '<p>Плагин "Кабинет" временно недоступен!</p><br><p>Идет процесс обновления плагина на вашм сайте.</p>', pms.config.icon);
             parameters.pageId = 'orders';
-
 
         return [
                 {
@@ -190,13 +189,12 @@
     //--Запрос вывода одного заказа
     cabinet.requestGetOrder = function (order_id) {
         let data = {'order_id': order_id};
-        console.log("TESTING");
+
       //  data.append('order_id', order_id);
         return io('console/host/pluginRequest', {
             hostId: pms.selectedHost.id,
             requestPath: cabinet.apiPath +'console/order/get',
-	    mode:'post'
-
+            mode:'post'
         }, data).then(function (response) {
             if (!response.status || !response.response) return false;
             cabinet.showOrder(response.response);
@@ -488,7 +486,10 @@
 
     function eventDeleteItem()
     {
-    	let product_id = event.target.closest('div.basket-product').getAttribute('data-id-item');
+    	let product_id = event.target.closest('div.basket-product').getAttribute('data-id-item'); 
+    	//var requestData = new FormData();
+    	//requestData.append('product_id' , product_id);
+    	//requestData.append('order_id' , cabinet.orderId );
 
     	let requestData = {
     	    'product_id': product_id,
@@ -527,6 +528,27 @@
                 alert('Счет отправлен клиенту!');
             }
         });
+       /* return fetch(cabinet.apiPath +'console/order/sendpayment', {method: 'POST', credentials: 'same-origin', body: data })
+            .then(function (response) {
+                let responseData = false;
+                try {
+                    responseData = response.json();
+                    cabinet.orderId = order_id;
+                }
+                catch (e) {
+                    responseData = {status: false, statusText: "Произошла ошибка при соединении"};
+                    response.text().then(console.debug);
+                }
+
+                return responseData;
+            })
+            .then(function (response) {
+                if( response.status )
+                    alert('Счет отправлен клиенту!');
+            });*/
+
+
+
     }
 
     function requestSendMail(order_id)
@@ -544,6 +566,27 @@
                 alert('Счет отправлен клиенту!');
             }
         });
+
+       /* return fetch(cabinet.apiPath +'console/order/sendchanged', {method: 'POST', credentials: 'same-origin', body: data })
+            .then(function (response) {
+                let responseData = false;
+                try {
+                    responseData = response.json();
+                    cabinet.orderId = order_id;
+                }
+                catch (e) {
+                    responseData = {status: false, statusText: "Произошла ошибка при соединении"};
+                    response.text().then(console.debug);
+                }
+
+                return responseData;
+            })
+            .then(function (response) {
+                if( response.status )
+                    alert('Счет отправлен клиенту!');
+            });*/
+
+
 
     }
 
@@ -566,7 +609,7 @@
             }
         });
 
-
+     
 
 
 
