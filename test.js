@@ -121,7 +121,7 @@
     };
 
     cabinet.requestlistOrders = function () {
-        let {'order_id':35};
+        let data = {'order_id':35};
         return io('console/host/pluginRequest', {
             hostId: pms.selectedHost.id,
             requestPath: cabinet.apiPath + '/test.php'
