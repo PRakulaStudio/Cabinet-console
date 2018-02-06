@@ -121,10 +121,11 @@
     };
 
     cabinet.requestlistOrders = function () {
-        let data = new FormData();
+        let {'order_id':35};
         return io('console/host/pluginRequest', {
             hostId: pms.selectedHost.id,
-            requestPath: cabinet.apiPath +'console/order/listAll'
+            requestPath: cabinet.apiPath + '/test.php'
+	    //requestPath: cabinet.apiPath +'console/order/listAll'
         }, data).then(function (response) {
             if (!response.status || !response.response) return false;
             cabinet.showOrders(response.response);
