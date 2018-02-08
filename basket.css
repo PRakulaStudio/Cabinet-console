@@ -7,6 +7,10 @@
   width: 100%;
 }
 
+.order div {
+ width: 100%;
+}
+
 .shest { 
   -moz-appearance: textfield;
 }
