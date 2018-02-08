@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+.editor-container {
+  width: 100%;
+}
+
 .shest { 
   -moz-appearance: textfield;
 }
